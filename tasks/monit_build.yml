@@ -1,0 +1,49 @@
+---
+# monit/tasks/build_monit.yml
+
+- name: Bootstrapping
+  shell: './bootstrap'
+  args:
+    chdir: "{{ monit_git_repo_dest }}"
+  register: monit_bootstrap
+
+- debug: var=monit_bootstrap
+  when: monit_bootstrap|failed
+
+- name: Configure --enable-optimized
+  shell: './configure {{ monit_configure_options }}'
+  args:
+    chdir: "{{ monit_git_repo_dest }}"
+  register: monit_configure
+
+- debug: var=monit_configure
+  when: monit_configure|failed
+
+- name: Make
+  shell: 'make'
+  args:
+    chdir: "{{ monit_git_repo_dest }}"
+  register: monit_make
+
+- debug: var=monit_make
+  when: monit_make|failed
+
+- name: sudo make install
+  shell: 'make install'
+  args:
+    chdir: "{{ monit_git_repo_dest }}"
+  register: monit_make_install
+  become: true
+
+- debug: var=monit_make_install
+  when: monit_make_install|failed
+
+- name: Run make cleanall
+  shell: 'make cleanall'
+  args:
+    chdir: "{{ monit_git_repo_dest }}"
+  register: monit_make_cleanall
+  become: true
+
+- debug: var=monit_make_cleanall
+  when: monit_make_cleanall|failed

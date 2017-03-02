@@ -1,0 +1,8 @@
+---
+# monit/handlers/main.yml
+
+- name: reload_monit_monit
+  shell: 'sudo monit reload'
+
+- name: enable_monit_system
+  service: name=monit state=started enabled=yes

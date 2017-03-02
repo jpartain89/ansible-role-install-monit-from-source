@@ -1,0 +1,22 @@
+---
+# monit/tasks/main.yml
+
+- name: Install Required Programs to build Monit
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: "{{ cache_valid_time_var }}"
+  with_items:
+    - "{{ monit_apt_apps }}"
+  become: true
+
+- name: Clone/Update Monit's git repo
+  git:
+    repo: "{{ monit_git_repo_http }}"
+    dest: "{{ monit_git_repo_dest }}"
+    update: yes
+  register: monit_git_update
+
+- include: monit_build.yml
+- include: monit_config.yml

@@ -1,0 +1,22 @@
+# {{ ansible_managed }}
+# How often, in seconds, should monit check your services.
+set daemon {{ monit_monitrc_daemon }}
+
+set logfile /var/log/monit.log
+set idfile /var/lib/monit/id
+set statefile /var/lib/monit/state
+
+###### M/Monit Configuration Section ######
+# eventqueue is a save space for when communication to
+# mmonit fails
+set eventqueue
+  basedir /var/lib/monit/events
+  slots {{ monit_monitrc_slots }}
+set mmonit {{ monit_monitrc_http }}
+
+set httpd port {{ monit_monitrc_port }}
+    {% for items in monit_monitrc_allow %}
+    allow {{ items }}
+    {% endfor %}
+
+include /etc/monit/conf.d/*

@@ -1,0 +1,7 @@
+---
+#install_monit_from_source/tests/local.yml
+
+- hosts: ubuntu25
+
+  roles:
+    - ../install_monit_from_source
