@@ -18,9 +18,9 @@ monit_conf_files:
 monit_apt_apps:
   - libtool
   - gcc
-  - gcc-4.9
-  - gcc-4.9-base
-  - gcc-4.9-source
+  - gcc-6
+  - gcc-6-base
+  - gcc-6-source
   - bison
   - libbison-dev
   - flex
