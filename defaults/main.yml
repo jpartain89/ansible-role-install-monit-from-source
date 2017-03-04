@@ -7,13 +7,6 @@ monit_git_repo_http: https://tildeslash@bitbucket.org/tildeslash/monit.git
 monit_git_repo_dest: "{{ ansible_user_dir }}/git/monit"
 monit_configure_options: --enable-optimized
 
-monit_conf_files:
-  - cron
-  - rsyslog
-  - systemload
-  - userify
-  - top
-
 # required apt_apps to build monit
 monit_apt_apps:
   - libtool
