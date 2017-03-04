@@ -19,4 +19,4 @@
   register: monit_git_update
 
 - include: monit_build.yml
-- include: monit_config.yml
+  when: monit_git_update|changed

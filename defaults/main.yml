@@ -6,20 +6,6 @@ cache_valid_time_var: 86400
 monit_git_repo_http: https://tildeslash@bitbucket.org/tildeslash/monit.git
 monit_git_repo_dest: "{{ ansible_user_dir }}/git/monit"
 monit_configure_options: --enable-optimized
-monit_conffiles_loc: "{{ conffiles_loc }}/monit"
-
-####
-# monitrc defaults:
-####
-monit_monitrc_daemon: 15
-monit_monitrc_slots: 1000
-monit_monitrc_http:
-monit_monitrc_port: 2812
-monit_monitrc_allow:
-  - localhost
-  - "{{ ansible_lo.ipv4.address }}/8"
-  - "{{ ansible_eth0.ipv4.network }}/24"
-  - "{{ ansible_eth0.ipv4.address }}"
 
 monit_conf_files:
   - cron
