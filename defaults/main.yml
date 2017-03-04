@@ -11,9 +11,6 @@ monit_configure_options: --enable-optimized
 monit_apt_apps:
   - libtool
   - gcc
-  - gcc-6
-  - gcc-6-base
-  - gcc-6-source
   - bison
   - libbison-dev
   - flex
@@ -24,4 +21,3 @@ monit_apt_apps:
   - build-essential
   - libpam0g
   - libpam0g-dev
-  - checkinstall
