@@ -1,4 +1,4 @@
-jpartain89.ansible_monit_from_source [![Build Status](https://travis-ci.org/jpartain89/ansible_monit_from_source.svg?branch=develop)](https://travis-ci.org/jpartain89/ansible_monit_from_source)
+jpartain89.ansible_monit_from_source [![Build Status](https://travis-ci.org/jpartain89/ansible_monit_from_source.svg?branch=master)](https://travis-ci.org/jpartain89/ansible_monit_from_source)
 =========
 
 Installation of monit from their Git Repo
