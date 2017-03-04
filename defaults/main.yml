@@ -7,20 +7,10 @@ monit_git_repo_http: https://tildeslash@bitbucket.org/tildeslash/monit.git
 monit_git_repo_dest: "{{ ansible_user_dir }}/git/monit"
 monit_configure_options: --enable-optimized
 
-monit_conf_files:
-  - cron
-  - rsyslog
-  - systemload
-  - userify
-  - top
-
 # required apt_apps to build monit
 monit_apt_apps:
   - libtool
   - gcc
-  - gcc-4.9
-  - gcc-4.9-base
-  - gcc-4.9-source
   - bison
   - libbison-dev
   - flex
@@ -31,4 +21,3 @@ monit_apt_apps:
   - build-essential
   - libpam0g
   - libpam0g-dev
-  - checkinstall
