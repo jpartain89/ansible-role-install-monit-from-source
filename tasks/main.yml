@@ -1,6 +1,8 @@
 ---
 # monit/tasks/main.yml
 
+- set_fact: monit_git_repo_dest={{ hostvars[ansible_user_dir] }}/git/monit
+
 - name: Install Required Programs to build Monit
   apt:
     name: "{{ item }}"
@@ -17,6 +19,8 @@
     dest: "{{ monit_git_repo_dest }}"
     update: yes
   register: monit_git_update
+  become: false
+  become_user: jpartain89
 
 - include: monit_build.yml
-  when: monit_git_update|changed
+#  when: monit_git_update|changed
