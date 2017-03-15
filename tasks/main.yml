@@ -23,4 +23,4 @@
   become_user: jpartain89
 
 - include: monit_build.yml
-#  when: monit_git_update|changed
+  when: monit_git_update|changed
