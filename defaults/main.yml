@@ -4,7 +4,8 @@
 cache_valid_time_var: 86400
 
 monit_git_repo_http: https://tildeslash@bitbucket.org/tildeslash/monit.git
-monit_configure_options: --enable-optimized
+monit_git_repo_dest: "/home/{{ ansible_user }}/git/monit"
+monit_configure_options: "--enable-optimized"
 
 # required apt_apps to build monit
 monit_apt_apps:
