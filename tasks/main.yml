@@ -1,7 +1,7 @@
 ---
 # monit/tasks/main.yml
 
-- set_fact: monit_git_repo_dest={{ hostvars[ansible_user_dir] }}/git/monit
+- set_fact: monit_git_repo_dest="{{ hostvars[ansible_user_dir] }}/git/monit"
 
 - name: Install Required Programs to build Monit
   apt:
