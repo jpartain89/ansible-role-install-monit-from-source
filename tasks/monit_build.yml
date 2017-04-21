@@ -49,13 +49,6 @@
   become: true
   register: monit_autostart_debian
 
-- name: Debian | Add Monit to Autostart
-  service:
-    name: monit.service
-    state: enabled
-  become: true
-  when: monit_autostart_debian|changed
-
 - name: macOS | Create Autostart Script
   template:
     src: com.tildeslash.monit.plist.j2
