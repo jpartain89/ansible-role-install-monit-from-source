@@ -4,20 +4,5 @@
 cache_valid_time_var: 86400
 
 monit_git_repo_http: https://tildeslash@bitbucket.org/tildeslash/monit.git
-monit_git_repo_dest: "/home/{{ ansible_user }}/git/monit"
+monit_git_repo_dest: "{{ ansible_user_dir }}/git/monit"
 monit_configure_options: "--enable-optimized"
-
-# required apt_apps to build monit
-monit_apt_apps:
-  - libtool
-  - gcc
-  - bison
-  - libbison-dev
-  - flex
-  - libfl-dev
-  - make
-  - automake
-  - autoconf
-  - build-essential
-  - libpam0g
-  - libpam0g-dev
