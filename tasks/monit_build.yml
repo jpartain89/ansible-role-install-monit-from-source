@@ -46,12 +46,14 @@
     group: root
     mode: 0644
   when: ansible_os_family == "Debian"
+  become: true
   register: monit_autostart_debian
 
 - name: Debian | Add Monit to Autostart
   service:
     name: monit.service
     state: enabled
+  become: true
   when: monit_autostart_debian|changed
 
 - name: macOS | Create Autostart Script
@@ -62,6 +64,7 @@
     group: wheel
     mode: 0644
   when: ansible_os_family == "Darwin"
+  become: true
   register: monit_autostart_darwin
 
 - name: Run make cleanall
