@@ -9,8 +9,7 @@ matrix:
 
 before_install:
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -qq; fi
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get upgrade -qqy; fi
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -qqy python-apt; fi
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -qqy python-apt python; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo easy_install pip; fi
 install:
