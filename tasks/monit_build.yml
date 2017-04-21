@@ -73,6 +73,3 @@
 
 - debug: var=monit_make_cleanall
   when: monit_make_cleanall|failed
-
-- name: Start/Restart Monit
-  
