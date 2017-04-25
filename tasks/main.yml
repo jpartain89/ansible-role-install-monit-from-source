@@ -32,7 +32,6 @@
     state: directory
     mode: 0775
     owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
   become: true
 
 - name: Clone/Update Monit's Git Repo
