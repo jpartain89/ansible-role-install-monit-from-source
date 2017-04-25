@@ -6,6 +6,8 @@
   args:
     chdir: "{{ monit_git_repo_dest }}"
   register: monit_bootstrap
+  environment:
+    PATH: "/usr/local/bin:/usr/local/sbin:{{ ansible_env.PATH }}"
 
 - debug: var=monit_bootstrap
   when: monit_bootstrap|failed

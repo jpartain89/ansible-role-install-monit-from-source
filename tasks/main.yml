@@ -26,6 +26,12 @@
     - ansible_os_family == "Darwin"
     - monit_macos_brew_openssl == "yes"
 
+- name: Create Any Missing Directories for Monit's Git Repo
+  file:
+    path: "{{ monit_git_repo_dest }}"
+    state: directory
+    mode: 0775
+
 - name: Clone/Update Monit's Git Repo
   git:
     repo: "{{ monit_git_repo_http }}"
@@ -36,4 +42,4 @@
   become_user: jpartain89
 
 - include: monit_build.yml
-#  when: monit_git_update|changed
+  when: monit_git_update|changed
