@@ -1,7 +1,7 @@
 ---
-# monit/tasks/main.yml
+# monit_from_source/tasks/main.yml
 
-- name: Install Required Programs to build Monit
+- name: Monit | Debian | Install Required Programs to Build Monit
   apt:
     name: "{{ item }}"
     state: latest
@@ -10,13 +10,38 @@
   with_items:
     - "{{ monit_apt_apps }}"
   become: true
+  when: ansible_os_family == "Debian"
 
-- name: Clone/Update Monit's git repo
+- name: Monit | macOS | Install Required Programs to Build Monit
+  homebrew:
+    name: "{{ item }}"
+    state: latest
+    update_homebrew: yes
+  with_items:
+    - "{{ monit_brew_apps }}"
+  when: ansible_os_family == "Darwin"
+
+- include: monit_brew_openssl.yml
+  when:
+    - ansible_os_family == "Darwin"
+    - monit_macos_brew_openssl == "yes"
+
+- name: Create Any Missing Directories for Monit's Git Repo
+  file:
+    path: "{{ monit_git_repo_dest }}"
+    state: directory
+    mode: 0775
+    owner: "{{ ansible_user_id }}"
+  become: true
+
+- name: Clone/Update Monit's Git Repo
   git:
     repo: "{{ monit_git_repo_http }}"
     dest: "{{ monit_git_repo_dest }}"
     update: yes
   register: monit_git_update
+  become: false
+  become_user: jpartain89
 
 - include: monit_build.yml
   when: monit_git_update|changed

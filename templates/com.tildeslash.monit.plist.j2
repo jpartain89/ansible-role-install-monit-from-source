@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" \
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>             <string>com.tildeslash.monit</string>
+    <key>ProcessType</key>       <string>Adaptive</string>
+    <key>Disabled</key>          <false/>
+    <key>RunAtLoad</key>         <true/>
+    <key>LaunchOnlyOnce</key>    <false/>
+    <key>ProgramArguments</key>
+    <array>
+        <string>{{ monit_build_prefix }}/bin/monit</string>
+        <string>-I</string>
+        <string>-c</string>
+        <string>{{ monit_build_prefix }}/etc/monitrc</string>
+    </array>
+</dict>
+</plist>

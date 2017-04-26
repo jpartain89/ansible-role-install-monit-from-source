@@ -16,6 +16,9 @@ galaxy_info:
     versions:
     - stretch
     - wheezy
+  - name: MacOSX
+    versions:
+    - '10.12'
 
   galaxy_tags:
     - system

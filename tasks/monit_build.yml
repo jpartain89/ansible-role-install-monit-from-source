@@ -6,6 +6,8 @@
   args:
     chdir: "{{ monit_git_repo_dest }}"
   register: monit_bootstrap
+  environment:
+    PATH: "/usr/local/bin:/usr/local/sbin:{{ ansible_env.PATH }}"
 
 - debug: var=monit_bootstrap
   when: monit_bootstrap|failed
@@ -37,6 +39,28 @@
 
 - debug: var=monit_make_install
   when: monit_make_install|failed
+
+- name: Debian | Create Autostart Script
+  template:
+    src: monit.service.j2
+    dest: /lib/systemd/system/monit.service
+    owner: root
+    group: root
+    mode: 0644
+  when: ansible_os_family == "Debian"
+  become: true
+  register: monit_autostart_debian
+
+- name: macOS | Create Autostart Script
+  template:
+    src: com.tildeslash.monit.plist.j2
+    dest: /Library/LaunchDaemons/com.tildeslash.monit.plist
+    owner: root
+    group: wheel
+    mode: 0644
+  when: ansible_os_family == "Darwin"
+  become: true
+  register: monit_autostart_darwin
 
 - name: Run make cleanall
   shell: 'make cleanall'

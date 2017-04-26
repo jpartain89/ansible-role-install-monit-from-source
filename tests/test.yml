@@ -1,5 +1,4 @@
 ---
 - hosts: all
-  remote_user: root
   roles:
     - ansible_monit_from_source
