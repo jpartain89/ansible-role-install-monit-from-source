@@ -12,9 +12,17 @@ I'd suggest you keep it somewhere that'll stick, because the role uses whether t
 
 ```
 monit_git_repo_http: https://tildeslash@bitbucket.org/tildeslash/monit.git
-monit_git_repo_dest: "/home/{{ ansible_user }}/git/monit"
+monit_git_repo_dest: "/usr/local/lib/monit-git"
 monit_configure_options: "--enable-optimized"
 ```
+
+If running this on a macOS Machine:
+
+```
+monit_macos_brew_openssl: "yes"
+```
+
+This should stick to `yes` as macOS is veering away from using OpenSSL for their own, weird thing? And other developers... aren't. So monit likes its OpenSSL certs, and this will make it work.
 
 Example Playbook
 ----------------
