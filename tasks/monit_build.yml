@@ -50,6 +50,7 @@
   when: ansible_os_family == "Debian"
   become: true
   register: monit_autostart_debian
+  notify: Enable Monit Systemctl
 
 - name: macOS | Create Autostart Script
   template:

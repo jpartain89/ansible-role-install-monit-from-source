@@ -1,0 +1,6 @@
+---
+# monit_from_source/handlers/main.yml
+
+- name: Enable Monit Systemctl
+  shell: 'systemctl enable monit.service'
+  become: true
