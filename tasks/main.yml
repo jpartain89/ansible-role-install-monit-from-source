@@ -16,7 +16,6 @@
   homebrew:
     name: "{{ item }}"
     state: latest
-    update_homebrew: yes
   with_items:
     - "{{ monit_brew_apps }}"
   when: ansible_os_family == "Darwin"
