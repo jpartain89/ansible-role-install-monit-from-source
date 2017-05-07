@@ -1,7 +1,7 @@
 ---
-# monit/vars/main.yml
 
-monit_build_prefix: '/usr/local'
+monit_monitrc_file: /etc/monitrc
+monit_group: root
 
 # required apt_apps to build monit
 monit_apt_apps:
@@ -17,11 +17,3 @@ monit_apt_apps:
   - build-essential
   - libpam0g
   - libpam0g-dev
-
-monit_brew_apps:
-  - autoconf
-  - automake
-  - cmake
-  - libtool
-  - gcc
-  - make
