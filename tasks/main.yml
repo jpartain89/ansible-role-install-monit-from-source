@@ -1,6 +1,12 @@
 ---
 # monit_from_source/tasks/main.yml
 
+- include_vars: macOS.yml
+  when: ansible_os_family == "Darwin"
+
+- include_vars: debian.yml
+  when: ansible_os_family == "Debian"
+
 - name: Monit | Debian | Install Required Programs to Build Monit
   apt:
     name: "{{ item }}"
@@ -31,6 +37,7 @@
     state: directory
     mode: 0775
     owner: "{{ ansible_user_id }}"
+    group: "{{ monit_group }}"
   become: true
 
 - name: Clone/Update Monit's Git Repo
