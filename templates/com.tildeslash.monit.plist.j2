@@ -10,10 +10,10 @@
     <key>LaunchOnlyOnce</key>    <false/>
     <key>ProgramArguments</key>
     <array>
-        <string>{{ monit_build_prefix }}/bin/monit</string>
+        <string>{{ monit_executable }}</string>
         <string>-I</string>
         <string>-c</string>
-        <string>{{ monit_build_prefix }}/etc/monitrc</string>
+        <string>{{ monit_monitrc_file }}</string>
     </array>
 </dict>
 </plist>
