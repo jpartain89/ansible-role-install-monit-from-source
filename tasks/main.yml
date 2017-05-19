@@ -25,6 +25,7 @@
   with_items:
     - "{{ monit_brew_apps }}"
   when: ansible_os_family == "Darwin"
+  become: false
 
 - include: monit_brew_openssl.yml
   when:
