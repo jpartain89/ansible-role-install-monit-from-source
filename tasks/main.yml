@@ -7,7 +7,7 @@
 - include_vars: debian.yml
   when: ansible_os_family == "Debian"
 
-- name: Monit | Debian | Install Required Programs to Build Monit
+- name: Debian | Install Required Programs to Build Monit
   apt:
     name: "{{ item }}"
     state: latest
@@ -18,7 +18,7 @@
   become: true
   when: ansible_os_family == "Debian"
 
-- name: Monit | macOS | Install Required Programs to Build Monit
+- name: macOS | Install Required Programs to Build Monit
   homebrew:
     name: "{{ item }}"
     state: latest
