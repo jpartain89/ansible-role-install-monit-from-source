@@ -1,4 +1,4 @@
 ---
 - hosts: all
   roles:
-    - ansible_monit_from_source
+    - ansible-role-monit-from-source
