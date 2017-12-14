@@ -27,7 +27,7 @@
   when: ansible_os_family == "Darwin"
   become: false
 
-- include: monit_brew_openssl.yml
+- include_tasks: monit_brew_openssl.yml
   when:
     - ansible_os_family == "Darwin"
     - monit_macos_brew_openssl == "yes"
@@ -50,5 +50,5 @@
   become: false
   become_user: jpartain89
 
-- include: monit_build.yml
+- include_tasks: monit_build.yml
   when: monit_git_update|changed
