@@ -17,3 +17,4 @@ monit_apt_apps:
   - build-essential
   - libpam0g
   - libpam0g-dev
+  - checkinstall

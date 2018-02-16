@@ -18,10 +18,20 @@
   args:
     chdir: "{{ monit_git_repo_dest }}"
 
-- name: sudo make install
-  shell: 'make install'
+- name: sudo checkinstall
+  shell: 'checkinstall -y'
   args:
     chdir: "{{ monit_git_repo_dest }}"
+  become: true
+  register: _checkinstall_monit
+
+- debug: var=_checkinstall_monit
+
+- name: Debian | Hold Monit Package
+  dpkg_selections:
+    name: monit
+    selection: hold
+  when: ansible_os_family == "Debian"
   become: true
 
 - name: Debian | Create Autostart Script
