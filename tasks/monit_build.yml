@@ -32,6 +32,7 @@
     name: monit
     selection: hold
   when: ansible_os_family == "Debian"
+  become: true
 
 - name: Debian | Create Autostart Script
   template:
