@@ -1,40 +1,22 @@
 ---
 # monit/tasks/build_monit.yml
 
-- name: Bootstrapping
-  shell: './bootstrap'
-  args:
-    chdir: "{{ monit_git_repo_dest }}"
-  environment:
-    PATH: "/usr/local/bin:/usr/local/sbin:{{ ansible_env.PATH }}"
+- name: Create auto-apt_monit Script from Template
+  template:
+    src: auto-apt_monit.j2
+    dest: "/tmp/auto-apt_monit.sh"
+    mode: 0775
+  register: _auto_apt_monit
+  delegate_to: localhost
 
-- name: Configure
-  shell: './configure {{ monit_configure_options }}'
-  args:
-    chdir: "{{ monit_git_repo_dest }}"
+- debug: var=_auto_apt_monit
 
-- name: Make
-  shell: 'make'
-  args:
-    chdir: "{{ monit_git_repo_dest }}"
+- name: Run auto-apt_monit.sh
+  script: /tmp/auto-apt_monit.sh
+  register: _auto_apt_monit_sh
+  notify: Remove tmp Files
 
-- name: Debian | sudo checkinstall
-  shell: 'checkinstall -y --pkgversion $(awk '/Version/{print $NF}' ./CHANGES  | head -1)'
-  args:
-    chdir: "{{ monit_git_repo_dest }}"
-  become: true
-  register: _checkinstall_monit
-  when: ansible_os_family == "Debian"
-
-- name: macOS | sudo make install
-  make:
-    chdir: "{{ monit_git_repo_dest }}"
-    target: install
-  when: ansible_os_family != "Debian"
-  register: _makeinstall_monit
-
-- debug: var=_checkinstall_monit
-- debug: var=_makeinstall_monit
+- debug: var=_auto_apt_monit_sh
 
 - name: Debian | Hold Monit Package
   dpkg_selections:
