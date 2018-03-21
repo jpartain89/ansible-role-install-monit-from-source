@@ -1,7 +1,7 @@
 ---
 # macOS.yml
 
-monit_monitrc_file: /usr/local/etc/monitrc
+monitrc_conf: /usr/local/etc/monitrc
 monit_group: wheel
 
 monit_brew_apps:

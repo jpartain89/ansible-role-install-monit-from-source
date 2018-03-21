@@ -1,20 +1,3 @@
-# This file is systemd template for monit service. To
-# register monit with systemd, place the monit.service file
-# to the /lib/systemd/system/ directory and then start it
-# using systemctl (see bellow).
-#
-# Enable monit to start on boot:
-#         systemctl enable monit.service
-#
-# Start monit immediately:
-#         systemctl start monit.service
-#
-# Stop monit:
-#         systemctl stop monit.service
-#
-# Status:
-#         systemctl status monit.service
-
 [Unit]
 Description=Pro-active monitoring utility for unix systems
 After=network.target
@@ -22,9 +5,9 @@ After=network.target
 [Service]
 Type=simple
 KillMode=process
-ExecStart={{ monit_executable }} -I -c {{ monit_monitrc_file }}
-ExecStop={{ monit_executable }} -c {{ monit_monitrc_file }} quit
-ExecReload={{ monit_executable }} -c {{ monit_monitrc_file }} reload
+ExecStart={{ monit_executable }} -I -c {{ monitrc_conf }}
+ExecStop={{ monit_executable }} -c {{ monitrc_conf }} quit
+ExecReload={{ monit_executable }} -c {{ monitrc_conf }} reload
 Restart=on-abnormal
 
 [Install]

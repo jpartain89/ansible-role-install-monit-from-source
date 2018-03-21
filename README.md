@@ -16,7 +16,10 @@ I'd suggest you keep it somewhere that'll stick, because the role uses whether t
 monit_git_repo_http: https://tildeslash@bitbucket.org/tildeslash/monit.git
 monit_git_repo_dest: "/usr/local/lib/monit-git"
 monit_configure_options: "--enable-optimized"
+monitrc_conf: /etc/monitrc
 ```
+
+The above `monitrc_conf` is the location you want the `monitrc` configuration file to go and be called to from the autostart scripts.
 
 If running this on a macOS Machine:
 

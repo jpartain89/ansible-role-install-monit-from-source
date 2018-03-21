@@ -1,6 +1,6 @@
 ---
 
-monit_monitrc_file: /etc/monitrc
+monitrc_conf: /etc/monitrc
 monit_group: root
 
 # required apt_apps to build monit
