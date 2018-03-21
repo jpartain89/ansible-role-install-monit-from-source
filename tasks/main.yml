@@ -27,7 +27,8 @@
   when: ansible_os_family == "Darwin"
   become: false
 
-- include_tasks: monit_brew_openssl.yml
+- name: Run monit_brew_openssl.yml for macOS
+  include_tasks: monit_brew_openssl.yml
   when:
     - ansible_os_family == "Darwin"
     - monit_macos_brew_openssl == "yes"
