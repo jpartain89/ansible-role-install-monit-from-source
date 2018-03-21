@@ -31,7 +31,7 @@ This should stick to `yes` as macOS is veering away from using OpenSSL for their
     - hosts: servers
 
       roles:
-         - jpartain89.ansible_monit_from_source
+         - jpartain89.install-monit-from-source
 
 ## License
 
