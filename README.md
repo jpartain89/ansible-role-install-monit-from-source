@@ -16,7 +16,10 @@ I'd suggest you keep it somewhere that'll stick, because the role uses whether t
 monit_git_repo_http: https://tildeslash@bitbucket.org/tildeslash/monit.git
 monit_git_repo_dest: "/usr/local/lib/monit-git"
 monit_configure_options: "--enable-optimized"
+monitrc_conf: /etc/monitrc
 ```
+
+The above `monitrc_conf` is the location you want the `monitrc` configuration file to go and be called to from the autostart scripts.
 
 If running this on a macOS Machine:
 
@@ -28,12 +31,10 @@ This should stick to `yes` as macOS is veering away from using OpenSSL for their
 
 ## Example Playbook
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
     - hosts: servers
 
       roles:
-         - jpartain89.ansible_monit_from_source
+         - jpartain89.install-monit-from-source
 
 ## License
 

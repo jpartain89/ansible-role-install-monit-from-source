@@ -1,57 +1,28 @@
 ---
 # monit/tasks/build_monit.yml
 
-- name: Bootstrapping
-  shell: './bootstrap'
-  args:
-    chdir: "{{ monit_git_repo_dest }}"
-  environment:
-    PATH: "/usr/local/bin:/usr/local/sbin:{{ ansible_env.PATH }}"
+- name: Create auto-apt_monit Script from Template
+  template:
+    src: auto-apt_monit.j2
+    dest: "/tmp/auto-apt_monit.sh"
+    mode: 0775
+  register: _auto_apt_monit
+  delegate_to: localhost
 
-- name: Configure --enable-optimized
-  shell: './configure {{ monit_configure_options }}'
-  args:
-    chdir: "{{ monit_git_repo_dest }}"
+- debug: var=_auto_apt_monit
 
-- name: Make
-  shell: 'make'
-  args:
-    chdir: "{{ monit_git_repo_dest }}"
+- name: Run auto-apt_monit.sh
+  script: /tmp/auto-apt_monit.sh
+  register: _auto_apt_monit_sh
+  notify: Remove tmp Files
 
-- name: sudo checkinstall
-  shell: 'checkinstall -y'
-  args:
-    chdir: "{{ monit_git_repo_dest }}"
-  become: true
-  register: _checkinstall_monit
-
-- debug: var=_checkinstall_monit
+- debug: var=_auto_apt_monit_sh
 
 - name: Debian | Hold Monit Package
   dpkg_selections:
     name: monit
     selection: hold
   when: ansible_os_family == "Debian"
-  become: true
-
-- name: Debian | Create Autostart Script
-  template:
-    src: monit.service.j2
-    dest: /lib/systemd/system/monit.service
-    owner: root
-    group: "{{ monit_group }}"
-    mode: 0644
-  when: ansible_os_family == "Debian"
-  become: true
-
-- name: macOS | Create Autostart Script
-  template:
-    src: com.tildeslash.monit.plist.j2
-    dest: /Library/LaunchDaemons/com.tildeslash.monit.plist
-    owner: root
-    group: "{{ monit_group }}"
-    mode: 0644
-  when: ansible_os_family == "Darwin"
   become: true
 
 - name: Run make cleanall

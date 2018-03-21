@@ -52,3 +52,5 @@
 
 - include_tasks: monit_build.yml
   when: monit_git_update|changed
+
+- include_tasks: monit_autostart.yml
