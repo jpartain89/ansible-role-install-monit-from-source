@@ -29,13 +29,14 @@
     enabled: yes
     daemon_reload: yes
   when:
-    - _debian_autostart_script|changed
+    - _debian_autostart_script is changed
     - ansible_os_family == "Debian"
   failed_when: false
+  become: true
 
 - name: macOS | Register Monit's Autostart Script
   command: '/usr/local/bin/lunchy start -w com.tildeslash.monit'
   when:
-    - _macos_autostart_script|changed
+    - _macos_autostart_script is changed
     - ansible_os_family == "Darwin"
   become: true

@@ -9,14 +9,10 @@
   register: _auto_apt_monit
   delegate_to: localhost
 
-- debug: var=_auto_apt_monit
-
 - name: Run auto-apt_monit.sh
   script: /tmp/auto-apt_monit.sh
   register: _auto_apt_monit_sh
   notify: Remove tmp Files
-
-- debug: var=_auto_apt_monit_sh
 
 - name: Debian | Hold Monit Package
   dpkg_selections:
