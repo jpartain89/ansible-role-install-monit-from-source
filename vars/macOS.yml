@@ -1,5 +1,4 @@
 ---
-# macOS.yml
 
 monitrc_conf: /usr/local/etc/monitrc
 monit_group: wheel

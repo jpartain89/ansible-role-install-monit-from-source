@@ -7,6 +7,12 @@
 - include_vars: debian.yml
   when: ansible_os_family == "Debian"
 
+- name: Get Current Monit Version
+  shell: "monit --version | awk 'NR==1 {print $5}'"
+  register: _current_monit_version
+  ignore_errors: "yes"
+  changed_when: false
+
 - name: Debian | Install Required Programs to Build Monit
   apt:
     name: "{{ item }}"
@@ -38,20 +44,29 @@
     path: "{{ monit_git_repo_dest }}"
     state: directory
     mode: 0775
-    owner: "{{ ansible_user_id }}"
-    group: "{{ monit_group }}"
-  become: true
+  become: false
 
 - name: Clone/Update Monit's Git Repo
   git:
     repo: "{{ monit_git_repo_http }}"
     dest: "{{ monit_git_repo_dest }}"
     update: yes
+    force: yes
   register: monit_git_update
-  become: false
   become_user: jpartain89
 
-- include_tasks: monit_build.yml
-  when: monit_git_update|changed
+- name: Set Current Version from Git Repo
+  shell: awk '$1=="Version"{print $2;exit;}' ./CHANGES
+  args:
+    chdir: "{{ monit_git_repo_dest }}"
+  register: _git_monit_version
+  changed_when: false
+
+- name: Build Monit
+  include_tasks: monit_build.yml
+  when: _current_monit_version.stdout_lines != _git_monit_version.stdout_lines
+  register: _monit_build
+
+- debug: var=_monit_build
 
 - include_tasks: monit_autostart.yml
