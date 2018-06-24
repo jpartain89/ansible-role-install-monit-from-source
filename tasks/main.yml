@@ -44,7 +44,7 @@
     path: "{{ monit_git_repo_dest }}"
     state: directory
     mode: 0775
-  become: false
+  become:
 
 - name: Clone/Update Monit's Git Repo
   git:
@@ -53,7 +53,7 @@
     update: yes
     force: yes
   register: monit_git_update
-  become_user: jpartain89
+  become_user: "{{ ansible_user_id }}"
 
 - name: Set Current Version from Git Repo
   shell: awk '$1=="Version"{print $2;exit;}' ./CHANGES

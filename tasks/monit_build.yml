@@ -7,10 +7,10 @@
     dest: "/tmp/auto-apt_monit.sh"
     mode: 0775
   register: _auto_apt_monit
-  delegate_to: localhost
+  #delegate_to: localhost
 
 - name: Run auto-apt_monit.sh
-  script: /tmp/auto-apt_monit.sh
+  shell: 'bash /tmp/auto-apt_monit.sh'
   register: _auto_apt_monit_sh
   notify: Remove tmp Files
 
@@ -25,4 +25,8 @@
   shell: 'make cleanall'
   args:
     chdir: "{{ monit_git_repo_dest }}"
+  become: true
+
+- name: Install Monit's Bash Completion Script
+  shell: 'cp {{ monit_git_repo_dest }}/system/bash/monit /etc/bash_completion.d/'
   become: true
