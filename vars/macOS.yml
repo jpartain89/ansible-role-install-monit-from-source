@@ -1,6 +1,6 @@
 ---
 
-monitrc_conf: /usr/local/etc/monitrc
+monitrc_conf: /usr/local/etc/monit/monitrc
 monit_group: wheel
 
 monit_brew_apps:
