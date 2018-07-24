@@ -44,7 +44,7 @@
     path: "{{ monit_git_repo_dest }}"
     state: directory
     mode: 0775
-  become:
+  become_user: "{{ ansible_user_id }}"
 
 - name: Clone/Update Monit's Git Repo
   git:
@@ -66,7 +66,5 @@
   include_tasks: monit_build.yml
   when: _current_monit_version.stdout_lines != _git_monit_version.stdout_lines
   register: _monit_build
-
-- debug: var=_monit_build
 
 - include_tasks: monit_autostart.yml

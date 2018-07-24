@@ -6,7 +6,7 @@ monit_executable: '/usr/local/bin/monit'
 cache_valid_time_var: 86400
 monit_git_repo_http: https://tildeslash@bitbucket.org/tildeslash/monit.git
 
-monit_git_repo_dest: "~/monit-git"
+monit_git_repo_dest: "{{ ansible_env.HOME }}/git/monit"
 
 monit_configure_options: "--enable-optimized"
 monit_macos_brew_openssl: "yes"
