@@ -15,12 +15,10 @@
 
 - name: Debian | Install Required Programs to Build Monit
   apt:
-    name: "{{ item }}"
+    name: "{{ monit_apt_apps }}"
     state: latest
     update_cache: yes
     cache_valid_time: "{{ cache_valid_time_var }}"
-  with_items:
-    - "{{ monit_apt_apps }}"
   become: true
   when: ansible_os_family == "Debian"
 
