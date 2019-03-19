@@ -24,10 +24,8 @@
 
 - name: macOS | Install Required Programs to Build Monit
   homebrew:
-    name: "{{ item }}"
+    name: "{{ monit_brew_apps  }}"
     state: latest
-  with_items:
-    - "{{ monit_brew_apps }}"
   when: ansible_os_family == "Darwin"
   become: false
 
