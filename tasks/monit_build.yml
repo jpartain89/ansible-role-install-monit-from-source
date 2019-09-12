@@ -7,7 +7,6 @@
     dest: "/tmp/auto-apt_monit.sh"
     mode: 0775
   register: _auto_apt_monit
-  #delegate_to: localhost
 
 - name: Run auto-apt_monit.sh
   shell: 'bash /tmp/auto-apt_monit.sh'

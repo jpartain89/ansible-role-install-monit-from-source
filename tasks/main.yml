@@ -15,7 +15,7 @@
 
 - name: Debian | Install Required Programs to Build Monit
   apt:
-    name: "{{ monit_apt_apps }}"
+    name: ["{{ monit_apt_apps }}"]
     state: latest
     update_cache: yes
     cache_valid_time: "{{ cache_valid_time_var }}"
@@ -63,4 +63,5 @@
   when: _current_monit_version.stdout_lines != _git_monit_version.stdout_lines
   register: _monit_build
 
-- include_tasks: monit_autostart.yml
+- name: Monit Autostart
+  include_tasks: monit_autostart.yml
