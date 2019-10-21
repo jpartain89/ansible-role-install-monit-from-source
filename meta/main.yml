@@ -16,10 +16,12 @@ galaxy_info:
     versions:
     - stretch
     - wheezy
+    - buster
   - name: MacOSX
     versions:
     - '10.12'
     - '10.13'
+    - '10.14'
 
   galaxy_tags:
     - system

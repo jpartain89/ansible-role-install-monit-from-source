@@ -1,7 +1,7 @@
 ---
 # monit/defaults/main.yml
 
-monit_executable: '/usr/local/bin/monit'
+monit_executable: '/usr/bin/monit'
 
 cache_valid_time_var: 86400
 monit_git_repo_http: https://tildeslash@bitbucket.org/tildeslash/monit.git

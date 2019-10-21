@@ -8,7 +8,7 @@
   when: ansible_os_family == "Debian"
 
 - name: Get Current Monit Version
-  shell: "monit --version | awk 'NR==1 {print $5}'"
+  shell: "{{ monit_executable }} --version | awk 'NR==1 {print $5}'"
   register: _current_monit_version
   ignore_errors: "yes"
   changed_when: false
