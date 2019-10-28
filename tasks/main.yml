@@ -1,10 +1,8 @@
 ---
 # monit_from_source/tasks/main.yml
 
-- include_vars: macOS.yml
-  when: ansible_os_family == "Darwin"
-
-- include_vars: debian.yml
+- name: Include Debian vars
+  include_vars: debian.yml
   when: ansible_os_family == "Debian"
 
 - name: Get Current Monit Version
@@ -21,19 +19,6 @@
     cache_valid_time: "{{ cache_valid_time_var }}"
   become: true
   when: ansible_os_family == "Debian"
-
-- name: macOS | Install Required Programs to Build Monit
-  homebrew:
-    name: "{{ monit_brew_apps  }}"
-    state: latest
-  when: ansible_os_family == "Darwin"
-  become: false
-
-- name: Run monit_brew_openssl.yml for macOS
-  include_tasks: monit_brew_openssl.yml
-  when:
-    - ansible_os_family == "Darwin"
-    - monit_macos_brew_openssl == "yes"
 
 - name: Create Any Missing Directories for Monit's Git Repo
   file:

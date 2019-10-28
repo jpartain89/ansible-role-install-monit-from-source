@@ -21,14 +21,6 @@ monitrc_conf: /etc/monitrc
 
 The above `monitrc_conf` is the location you want the `monitrc` configuration file to go and be called to from the autostart scripts.
 
-If running this on a macOS Machine:
-
-```
-monit_macos_brew_openssl: "yes"
-```
-
-This should stick to `yes` as macOS is veering away from using OpenSSL for their own, weird thing? And other developers... aren't. So monit likes its OpenSSL certs, and this will make it work.
-
 ## Example Playbook
 
     - hosts: servers
