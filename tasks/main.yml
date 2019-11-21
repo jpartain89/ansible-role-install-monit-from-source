@@ -14,7 +14,7 @@
 - name: Debian | Install Required Programs to Build Monit
   apt:
     name: "{{ monit_apt_apps }}"
-    state: latest
+    state: present
     update_cache: yes
     cache_valid_time: "{{ cache_valid_time_var }}"
   become: true
@@ -25,15 +25,17 @@
     path: "{{ monit_git_repo_dest }}"
     state: directory
     mode: 0775
+  become: true
   become_user: "{{ ansible_user_id }}"
 
 - name: Clone/Update Monit's Git Repo
   git:
-    repo: "{{ monit_git_repo_http }}"
+    repo: "{{ monit_git_repo_http }}" # noqa 401
     dest: "{{ monit_git_repo_dest }}"
     update: yes
     force: yes
   register: monit_git_update
+  become: true
   become_user: "{{ ansible_user_id }}"
 
 - name: Set Current Version from Git Repo

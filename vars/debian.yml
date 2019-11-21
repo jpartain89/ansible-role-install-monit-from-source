@@ -19,7 +19,8 @@ monit_apt_apps:
   - libpam0g-dev
   - checkinstall
   - ssl-cert
-  - python3-openssl 
+  - python3-openssl
   - libevent-openssl-2.0-5
   - libgnutls-openssl27
   - libssl-dev
+  - git
