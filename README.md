@@ -1,4 +1,4 @@
-# jpartain89.install-monit-from-source
+# jpartain89.install_monit_from_source
 
 | **Travis-CI** |
 | ------------ |
@@ -36,7 +36,7 @@ monit_configure_options: "--enable-optimized"
     - hosts: servers
 
       roles:
-         - jpartain89.install-monit-from-source
+         - jpartain89.install_monit_from_source
 
 ## License
 

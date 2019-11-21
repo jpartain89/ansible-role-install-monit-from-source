@@ -3,7 +3,7 @@ services: docker
 
 env:
   global:
-    - ROLE_NAME: install-monit-from-source
+    - ROLE_NAME: install_monit_from_source
   matrix:
     - MOLECULE_DISTRO: ubuntu1804
     - MOLECULE_DISTRO: ubuntu1604
