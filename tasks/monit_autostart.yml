@@ -1,6 +1,6 @@
 ---
 
-- name: Debian | Create Autostart Script
+- name: Create Autostart Script
   template:
     src: monit.service.j2
     dest: /lib/systemd/system/monit.service
@@ -10,7 +10,7 @@
   become: true
   register: _debian_autostart_script
 
-- name: Debian | Register Monit's Autostart Script
+- name: Register Monit's Autostart Script
   systemd:
     state: started
     name: monit.service
