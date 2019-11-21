@@ -8,18 +8,28 @@ Installation of Monit from their [Git Repo](https://bitbucket.org/tildeslash/mon
 
 ## Role Variables
 
-For the `monit_git_repo_dest`, I always put my downloaded git repo's inside of a `~/git` directory in my home folders. This way, everything `git` is grouped together. But, you can change where you want monit's git repo to go.
+There are two sets of variable files I use in this role, one in the `defaults` directory (which contains the variables that are the easiest for you to override) and a debian.yml file in the `vars` directory, which are "stickier" variables, so-to-speak (these are usually best left alone).
 
-I'd suggest you keep it somewhere that'll stick, because the role uses whether the git repo has any updates to continue its build process.
+Here is a list of the variables in the `default` directory:
 
-```
+```bash
+# This is where the actual monit program will be installed
+monit_executable: '/usr/bin/monit'
+
+# This is used for how often the apt-based tasks will also
+# update the cache from the source repo's online.
+cache_valid_time_var: 86400
+
+# This is monit's git repo address.
 monit_git_repo_http: https://tildeslash@bitbucket.org/tildeslash/monit.git
-monit_git_repo_dest: "/usr/local/lib/monit-git"
-monit_configure_options: "--enable-optimized"
-monitrc_conf: /etc/monitrc
-```
 
-The above `monitrc_conf` is the location you want the `monitrc` configuration file to go and be called to from the autostart scripts.
+# This is where the git repo will be cloned to on your destination computer
+# This role will actually use the repo to compare version numbers for future
+# easy updates.
+monit_git_repo_dest: "{{ ansible_env.HOME }}/git/monit"
+
+monit_configure_options: "--enable-optimized"
+```
 
 ## Example Playbook
 
