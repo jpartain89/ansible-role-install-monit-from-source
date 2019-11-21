@@ -11,6 +11,13 @@
   ignore_errors: "yes"
   changed_when: false
 
+- name: Add Backports apt repo for CheckInstall
+  apt_repository:
+    repo: "deb http://deb.debian.org/debian buster-backports main contrib non-free"
+    state: present
+  become: true
+  when: ansible_distribution_release == "buster"
+
 - name: Install Required Programs to Build Monit
   apt:
     name: "{{ monit_apt_apps }}"
