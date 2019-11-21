@@ -20,7 +20,7 @@ monit_apt_apps:
   - checkinstall
   - ssl-cert
   - python3-openssl
-  - libevent-openssl-2.0-5
+  - libevent-openssl-*
   - libgnutls-openssl27
   - libssl-dev
   - git
