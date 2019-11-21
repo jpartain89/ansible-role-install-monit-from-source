@@ -14,7 +14,7 @@
   register: _auto_apt_monit_sh
   notify: Remove tmp Files
 
-- name: Debian | Hold Monit Package
+- name: Hold Monit Package
   dpkg_selections:
     name: monit
     selection: hold
