@@ -11,7 +11,7 @@
   ignore_errors: "yes"
   changed_when: false
 
-- name: Debian | Install Required Programs to Build Monit
+- name: Install Required Programs to Build Monit
   apt:
     name: "{{ monit_apt_apps }}"
     state: present
