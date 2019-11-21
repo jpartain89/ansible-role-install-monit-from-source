@@ -2,7 +2,7 @@
 
 | **Travis-CI** |
 | ------------ |
-| [![Build Status](https://travis-ci.org/jpartain89/ansible-role-monit-from-source.svg?branch=master)](https://travis-ci.org/jpartain89/ansible-role-monit-from-source) |
+| [![Build Status](https://travis-ci.com/jpartain89/ansible-role-install-monit-from-source.svg?branch=master)](https://travis-ci.com/jpartain89/ansible-role-install-monit-from-source) |
 
 Installation of Monit from their [Git Repo](https://bitbucket.org/tildeslash/monit)
 
