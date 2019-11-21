@@ -24,3 +24,5 @@ monit_apt_apps:
   - libgnutls-openssl27
   - libssl-dev
   - git
+  - zlib1g
+  - zlib1g-dev

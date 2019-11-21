@@ -13,7 +13,7 @@ make &&
 if [[ $(uname -s) == 'Linux' ]]; then
     if [[ "$(command -v checkinstall)" ]]; then
         sudo checkinstall -y \
-            --pkgversion  {{ _git_monit_version }} \
+            --pkgversion  {{ _git_monit_version.stdout }} \
             --maintainer {{ ansible_user_id }} \
             --pkgname monit
     else
