@@ -1,5 +1,5 @@
 galaxy_info:
-  role_name: install-monit-from-source
+  role_name: install_monit_from_ source
   author: Justin Partain
   description: Install Monit via their Git Repo
   company: JPCDI
