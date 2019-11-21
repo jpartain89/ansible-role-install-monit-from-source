@@ -16,7 +16,9 @@
     repo: "deb http://deb.debian.org/debian buster-backports main contrib non-free"
     state: present
   become: true
-  when: ansible_distribution_release == "buster"
+  when:
+    - ansible_facts['distribution_release'] == "buster"
+    - ansible_facts['lsb']['id']  != "Raspbian"
 
 - name: Install Required Programs to Build Monit
   apt:
