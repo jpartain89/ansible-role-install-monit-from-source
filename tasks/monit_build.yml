@@ -7,13 +7,14 @@
     dest: "/tmp/auto-apt_monit.sh"
     mode: 0775
   register: _auto_apt_monit
+  delegate_to: localhost
 
 - name: Run auto-apt_monit.sh
-  shell: 'bash /tmp/auto-apt_monit.sh'
+  script: '/tmp/auto-apt_monit.sh'
   register: _auto_apt_monit_sh
   notify: Remove tmp Files
 
-- name: Debian | Hold Monit Package
+- name: Hold Monit Package
   dpkg_selections:
     name: monit
     selection: hold
@@ -21,11 +22,11 @@
   become: true
 
 - name: Run make cleanall
-  shell: 'make cleanall'
+  command: 'make cleanall' # noqa 301
   args:
     chdir: "{{ monit_git_repo_dest }}"
   become: true
 
 - name: Install Monit's Bash Completion Script
-  shell: 'cp {{ monit_git_repo_dest }}/system/bash/monit /etc/bash_completion.d/'
+  command: 'cp {{ monit_git_repo_dest }}/system/bash/monit /etc/bash_completion.d/' # noqa 301
   become: true

@@ -1,10 +1,8 @@
 ---
 # monit_from_source/tasks/main.yml
 
-- include_vars: macOS.yml
-  when: ansible_os_family == "Darwin"
-
-- include_vars: debian.yml
+- name: Include Debian vars
+  include_vars: debian.yml
   when: ansible_os_family == "Debian"
 
 - name: Get Current Monit Version
@@ -13,42 +11,38 @@
   ignore_errors: "yes"
   changed_when: false
 
-- name: Debian | Install Required Programs to Build Monit
+- name: Add Backports apt repo for CheckInstall
+  apt_repository:
+    repo: "deb http://deb.debian.org/debian buster-backports main contrib non-free"
+    state: present
+  become: true
+  when: ansible_distribution_release == "buster"
+
+- name: Install Required Programs to Build Monit
   apt:
     name: "{{ monit_apt_apps }}"
-    state: latest
+    state: present
     update_cache: yes
     cache_valid_time: "{{ cache_valid_time_var }}"
   become: true
   when: ansible_os_family == "Debian"
-
-- name: macOS | Install Required Programs to Build Monit
-  homebrew:
-    name: "{{ monit_brew_apps  }}"
-    state: latest
-  when: ansible_os_family == "Darwin"
-  become: false
-
-- name: Run monit_brew_openssl.yml for macOS
-  include_tasks: monit_brew_openssl.yml
-  when:
-    - ansible_os_family == "Darwin"
-    - monit_macos_brew_openssl == "yes"
 
 - name: Create Any Missing Directories for Monit's Git Repo
   file:
     path: "{{ monit_git_repo_dest }}"
     state: directory
     mode: 0775
+  become: true
   become_user: "{{ ansible_user_id }}"
 
 - name: Clone/Update Monit's Git Repo
   git:
-    repo: "{{ monit_git_repo_http }}"
+    repo: "{{ monit_git_repo_http }}" # noqa 401
     dest: "{{ monit_git_repo_dest }}"
     update: yes
     force: yes
   register: monit_git_update
+  become: true
   become_user: "{{ ansible_user_id }}"
 
 - name: Set Current Version from Git Repo

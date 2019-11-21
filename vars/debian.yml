@@ -17,9 +17,12 @@ monit_apt_apps:
   - build-essential
   - libpam0g
   - libpam0g-dev
-  - checkinstall
   - ssl-cert
-  - python3-openssl 
-  - libevent-openssl-2.0-5
+  - python3-openssl
+  - libevent-openssl-*
   - libgnutls-openssl27
   - libssl-dev
+  - git
+  - zlib1g
+  - zlib1g-dev
+  - checkinstall
