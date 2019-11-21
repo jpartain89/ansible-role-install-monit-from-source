@@ -20,7 +20,7 @@ install:
 
 before_script:
 - cd ../
-- mv ansible-role-monit-from-source jpartain89.$ROLE_NAME
+- mv ansible-role-$ROLE_NAME jpartain89.$ROLE_NAME
 - cd jpartain89.$ROLE_NAME
 
 script:
