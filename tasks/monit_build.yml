@@ -13,6 +13,7 @@
   script: '/tmp/auto-apt_monit.sh'
   register: _auto_apt_monit_sh
   notify: Remove tmp Files
+  become: true
 
 - name: Hold Monit Package
   dpkg_selections:

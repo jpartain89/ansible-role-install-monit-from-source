@@ -34,8 +34,8 @@
     path: "{{ monit_git_repo_dest }}"
     state: directory
     mode: 0775
-  become: true
-  become_user: "{{ ansible_user_id }}"
+  become: false
+  #become_user: "{{ ansible_user_id }}"
 
 - name: Clone/Update Monit's Git Repo
   git:
