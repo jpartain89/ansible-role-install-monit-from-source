@@ -5,3 +5,4 @@
     path: /tmp/auto-apt_monit.sh
     state: absent
   delegate_to: localhost
+  become: true

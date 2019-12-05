@@ -29,6 +29,13 @@
   become: true
   when: ansible_os_family == "Debian"
 
+- name: Create Any Missing Directories for Monit Installation
+  file:
+    path: "{{ monit_install_file_paths }}"
+    state: directory
+    mode: 0775
+  become: true
+
 - name: Create Any Missing Directories for Monit's Git Repo
   file:
     path: "{{ monit_git_repo_dest }}"
