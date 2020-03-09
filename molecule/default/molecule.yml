@@ -2,9 +2,7 @@
 dependency:
   name: galaxy
 scenario:
-  name: default
   test_sequence:
-    - lint
     - destroy
     - syntax
     - create
@@ -14,8 +12,6 @@ scenario:
     - destroy
 driver:
   name: docker
-lint:
-  name: yamllint
 platforms:
   - name: instance
     image: "geerlingguy/docker-${MOLECULE_DISTRO:-debian9}-ansible:latest"
@@ -28,9 +24,5 @@ provisioner:
   name: ansible
   #env:
   #  ANSIBLE_VAULT_PASSWORD_FILE: .vault_pass.txt
-  lint:
-    name: ansible-lint
 verifier:
-  name: testinfra
-  lint:
-    name: flake8
+  name: ansible
