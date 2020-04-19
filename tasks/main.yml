@@ -63,7 +63,8 @@
 
 - name: Build Monit
   include_tasks: monit_build.yml
-  when: _current_monit_version.stdout_lines != _git_monit_version.stdout_lines
+  when: _current_monit_version.stdout_lines != _git_monit_version.stdout_lines or
+    mmonit_user_build_anyways == true
   register: _monit_build
 
 - name: Monit Autostart
