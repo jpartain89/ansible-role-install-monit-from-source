@@ -1,16 +1,27 @@
 ---
 # monit/tasks/build_monit.yml
 
+- name: Ceate Monit tmp Directory
+  file:
+    path: "{{ monit_temp_dir }}"
+    state: directory
+    owner: "{{ ansible_user_uid | int }}"
+    group: "{{ ansible_user_gid | int }}"
+    mode: 0775
+  delegate_to: localhost
+  become: true
+  notify: "Remove tmp Files"
+
 - name: Create auto-apt_monit Script from Template
   template:
     src: auto-apt_monit.j2
-    dest: "/tmp/auto-apt_monit_{{ inventory_hostname }}.sh"
+    dest: "{{ monit_temp_files }}/auto-apt_monit_{{ inventory_hostname }}.sh"
     mode: 0775
   register: _auto_apt_monit
   delegate_to: localhost
 
 - name: Run auto-apt_monit.sh
-  script: '/tmp/auto-apt_monit_{{ inventory_hostname }}.sh'
+  script: "{{ monit_temp_files }}/auto-apt_monit_{{ inventory_hostname }}.sh"
   register: _auto_apt_monit_sh
   notify: Remove tmp Files
   become: true

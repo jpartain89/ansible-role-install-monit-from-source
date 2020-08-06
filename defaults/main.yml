@@ -1,13 +1,15 @@
 ---
 # monit/defaults/main.yml
 
-monit_executable: '/usr/bin/monit'
+monit_executable: "/usr/bin/monit"
 
 cache_valid_time_var: 86400
-monit_git_repo_http: https://tildeslash@bitbucket.org/tildeslash/monit.git
+monit_git_repo_http: "https://tildeslash@bitbucket.org/tildeslash/monit.git"
 
 monit_git_repo_dest: "{{ ansible_env.HOME }}/git/monit"
 
 monit_configure_options: "--enable-optimized"
 
 monit_install_file_paths: "/usr/local/share/man"
+
+monit_temp_dir: "/tmp/monit"
