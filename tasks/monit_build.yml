@@ -15,13 +15,13 @@
 - name: Create auto-apt_monit Script from Template
   template:
     src: auto-apt_monit.j2
-    dest: "{{ monit_temp_files }}/auto-apt_monit_{{ inventory_hostname }}.sh"
+    dest: "{{ monit_temp_dir }}/auto-apt_monit_{{ inventory_hostname }}.sh"
     mode: 0775
   register: _auto_apt_monit
   delegate_to: localhost
 
 - name: Run auto-apt_monit.sh
-  script: "{{ monit_temp_files }}/auto-apt_monit_{{ inventory_hostname }}.sh"
+  script: "{{ monit_temp_dir }}/auto-apt_monit_{{ inventory_hostname }}.sh"
   register: _auto_apt_monit_sh
   notify: Remove tmp Files
   become: true
