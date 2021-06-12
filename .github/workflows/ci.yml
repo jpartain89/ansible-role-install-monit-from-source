@@ -7,6 +7,10 @@ name: CI
       - master
     schedule:
       - cron: "0 6 * * 3"
+      
+defaults:
+  run:
+    working-directory: 'jpartain89.install-monit-from-source'
 
 jobs:
 
