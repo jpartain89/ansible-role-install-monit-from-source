@@ -12,4 +12,4 @@
       become: true
 
   roles:
-    - role: install-monit-from-source
+    - role: jpartain89.install-monit-from-source
