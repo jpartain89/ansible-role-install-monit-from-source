@@ -1,5 +1,5 @@
 galaxy_info:
-  role_name: install_monit_from_source
+  role_name: jpartain89.install_monit_from_source
   author: Justin Partain
   description: Install Monit via their Git Repo
   company: JPCDI
@@ -14,12 +14,13 @@ galaxy_info:
     - trusty
     - xenial
     - bionic
+    - focal
   - name: Debian
     versions:
     - stretch
     - wheezy
     - buster
-
+    - bullseye
   galaxy_tags:
     - system
     - monitoring
