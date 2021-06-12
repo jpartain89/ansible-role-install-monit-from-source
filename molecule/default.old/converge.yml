@@ -1,12 +1,15 @@
 ---
 
-- name: Prepare
+- name: Converge
   hosts: all
 
-  tasks:
+  pre_tasks:
     - name: Install Required Apps
       apt:
         name: lsb-release
         state: present
         update_cache: yes
       become: true
+
+  roles:
+    - role: jpartain89.install-monit-from-source
