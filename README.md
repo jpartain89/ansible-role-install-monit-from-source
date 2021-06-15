@@ -1,8 +1,6 @@
 # jpartain89.install_monit_from_source
 
-| **Travis-CI** |
-| ------------ |
-| [![Build Status](https://travis-ci.com/jpartain89/ansible-role-install-monit-from-source.svg?branch=master)](https://travis-ci.com/jpartain89/ansible-role-install-monit-from-source) |
+I have chosen to no longer work on this repo myself. My apologies. 
 
 Installation of Monit from their [Git Repo](https://bitbucket.org/tildeslash/monit)
 
